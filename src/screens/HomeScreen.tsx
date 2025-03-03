@@ -39,12 +39,18 @@ const HomeScreen = () => {
         const isRight = direction === 'right';
         const currentCatId = activeStack === 'A' ? stackA[currentIndex]?.id : stackB[currentIndex]?.id;
 
+        // Reset swipe text before updating
+        dispatch(setSwipeText(''));
+        swipeOpacity.setValue(0);
+
         // Vote after button press
         dispatch(voteCatImage(currentCatId, isRight ? 1 : -1));
 
-        // Set Swipe Text
-        dispatch(setSwipeText(isRight ? 'LIKE' : 'NOPE'));
-        swipeOpacity.setValue(1);
+        // Set Swipe Text after a short delay to prevent overlap
+        setTimeout(() => {
+            dispatch(setSwipeText(isRight ? 'LIKE' : 'NOPE'));
+            swipeOpacity.setValue(1);
+        }, 50); // Short delay before showing swipeText
 
         // Trigger the same animation as a swipe
         Animated.timing(swipeAnimation, {
@@ -57,8 +63,8 @@ const HomeScreen = () => {
     const handleSwipeComplete = () => {
         dispatch(resetSwipe());
 
-        // Reset swipeText and opacity after animation completes
-        dispatch(setSwipeText(''));  // Reset swipeText
+        // Reset swipeText and opacity immediately after the swipe
+        dispatch(setSwipeText(''));  // Clear swipeText immediately
         swipeOpacity.setValue(0);    // Reset swipeOpacity
 
         if (currentIndex < 9) {
@@ -100,10 +106,9 @@ const HomeScreen = () => {
         if (event.nativeEvent.state === State.END) {
             const { translationX } = event.nativeEvent;
             const swipeThreshold = 120;
-            const currentCatId = activeStack === 'A' ? stackA[currentIndex]?.id : stackB[currentIndex]?.id;
 
+            // Check swipe direction and trigger the text box only once
             if (translationX > swipeThreshold) {
-                dispatch(voteCatImage(currentCatId, 1)); // Like vote
                 dispatch(setSwipeText('LIKE'));
                 Animated.timing(swipeOpacity, { toValue: 1, duration: 300, useNativeDriver: true }).start();
                 Animated.timing(swipeAnimation, {
@@ -112,7 +117,6 @@ const HomeScreen = () => {
                     useNativeDriver: true,
                 }).start(() => handleSwipeComplete());
             } else if (translationX < -swipeThreshold) {
-                dispatch(voteCatImage(currentCatId, -1)); // Nope vote
                 dispatch(setSwipeText('NOPE'));
                 Animated.timing(swipeOpacity, { toValue: 1, duration: 300, useNativeDriver: true }).start();
                 Animated.timing(swipeAnimation, {
@@ -123,10 +127,10 @@ const HomeScreen = () => {
             } else {
                 Animated.spring(swipeAnimation, { toValue: { x: 0, y: 0 }, useNativeDriver: true }).start();
                 swipeOpacity.setValue(0);
-                dispatch(setSwipeText(''));  // Reset swipeText immediately
             }
         }
     };
+
 
     return (
         <View style={styles.container}>
