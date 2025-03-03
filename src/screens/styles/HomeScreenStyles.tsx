@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import {COLORS} from '../../constants/colors';
 
 const HomeScreenStyles = StyleSheet.create<{
     container: object,
@@ -29,21 +30,21 @@ const HomeScreenStyles = StyleSheet.create<{
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'white',
+        backgroundColor: COLORS.whiteBackground,  // Set the background color to whiteBackground
     },
     catImageContainer: {
         width: '90%',
         aspectRatio: 3.7 / 4,
         borderRadius: 20,
         overflow: 'hidden',
-        backgroundColor: '#f0f0f0',
+        backgroundColor: COLORS.white,  // Using white color for background
         marginTop: -60,
         alignSelf: 'center',
-        shadowColor: '#000000CC',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 6,
-        elevation: 10,
+        shadowColor: COLORS.grayText,  // Gray text for shadow
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.3,
+        shadowRadius: 16,
+        elevation: 16,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -70,53 +71,40 @@ const HomeScreenStyles = StyleSheet.create<{
         width: '100%',
         height: '100%',
     },
-
     infoBox: {
         position: 'absolute',
-        bottom: -15, // Partially cut at bottom
+        bottom: -15,  // Partially cut at bottom
         left: 20,
         right: 20,
-        backgroundColor: 'white',
+        backgroundColor: COLORS.white,  // Use white for infoBox background
         borderRadius: 10,
         paddingHorizontal: 15,
         paddingTop: 5,
         paddingBottom: 22,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-        elevation: 3,
-        height: 80, // Ensures it's a rectangle
+        height: 80,  // Ensures it's a rectangle
     },
-
     textContainer: {
         flexDirection: 'column',
         alignItems: 'flex-start',
     },
-
     catName: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#333',
+        color: COLORS.blackText,  // Use blackText for cat name
         marginBottom: 2,
     },
-
     catOrigin: {
         fontSize: 14,
-        color: '#777',
+        color: COLORS.grayText,  // Use grayText for cat origin
     },
-
     catAge: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#555',
-        position: 'absolute', // Aligns within infoBox
-        top: 5, // Aligns with name text
-        right: 15, // Pushes to the right
+        color: COLORS.grayText,  // Use grayText for cat age
+        position: 'absolute',  // Aligns within infoBox
+        top: 5,  // Aligns with name text
+        right: 15,  // Pushes to the right
     },
-
-
-
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
@@ -130,15 +118,17 @@ const HomeScreenStyles = StyleSheet.create<{
         borderRadius: 30,
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: '#00000055',
-        shadowOffset: { width: 0, height: 4 },
-        elevation: 10,
+        shadowColor: COLORS.grayText,  // Using grayText for shadow color
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.3,
+        shadowRadius: 16,
+        elevation: 16,
     },
     dislikeButton: {
-        backgroundColor: 'white',
+        backgroundColor: COLORS.white,  // White background for dislike button
     },
     likeButton: {
-        backgroundColor: 'white',
+        backgroundColor: COLORS.white,  // White background for like button
     },
     swipeBox: {
         position: 'absolute',
@@ -147,17 +137,17 @@ const HomeScreenStyles = StyleSheet.create<{
         paddingHorizontal: 20,
         borderRadius: 8,
         borderWidth: 5,
-        borderColor: 'white',
+        borderColor: COLORS.white,  // White color for swipe box border
     },
     likeBox: {
         left: 30,
         transform: [{ rotate: '-15deg' }],
-        borderColor: '#4DAF6F',
+        borderColor: COLORS.greenMatch,  // Use greenMatch color for like box
     },
     nopeBox: {
         right: 30,
         transform: [{ rotate: '15deg' }],
-        borderColor: '#D14343',
+        borderColor: COLORS.redMatch,  // Use redMatch color for nope box
     },
     swipeText: {
         fontSize: 34,
@@ -166,15 +156,15 @@ const HomeScreenStyles = StyleSheet.create<{
         textTransform: 'uppercase',
     },
     likeText: {
-        color: '#4DAF6F',
+        color: COLORS.greenMatch,  // Use greenMatch color for like text
     },
     nopeText: {
-        color: '#D14343',
+        color: COLORS.redMatch,  // Use redMatch color for nope text
     },
     noMoreCats: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#777',
+        color: COLORS.grayText,  // Use grayText color for "No more cats" text
         textAlign: 'center',
         marginTop: 20,
     },

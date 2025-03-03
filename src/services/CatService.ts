@@ -25,17 +25,15 @@ export const fetchCatImages = async (): Promise<{ id: string; url: string; breed
                     'x-api-key': API_KEY,
                 },
                 params: {
-                    limit: 10,          // Limit the number of images
-                    size: 'full',       // Ensure full-size images
-                    order: 'RAND',      // Set the order to random
-                    has_breeds: 'true', // Only return images with breed information
+                    limit: 10,
+                    size: 'full',
+                    order: 'RAND',
+                    has_breeds: 'true',
                 },
             };
 
-            // Make the API call to fetch cat images
             const response: AxiosResponse<CatImage[]> = await axios.get(API_SEARCH_URL, config);
 
-            // Process and return the cat images with breed information
             return response.data.map((cat: CatImage) => ({
                 id: cat.id,
                 url: cat.url,
@@ -73,10 +71,8 @@ export const voteCatImage = async (catId: string, voteType: 1 | -1): Promise<str
                 value: voteType,
             };
 
-            // Make the POST request to vote
             const response = await axios.post(API_VOTE_URL, votePayload, config);
 
-            // Handle the response
             if (response.status === 201) {
                 return `Vote for image ${catId} successfully recorded as ${voteType === 1 ? 'like' : 'dislike'}`;
             } else {

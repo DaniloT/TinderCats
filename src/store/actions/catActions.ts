@@ -1,4 +1,4 @@
-import { voteCatImage as voteCatImageService } from '../../services/CatService'; // Import the API call
+import { voteCatImage as voteCatImageService } from '../../services/CatService';
 import { SET_STACKS, NEXT_IMAGE, SWAP_STACKS, SET_LOADING, SET_SWIPE_TEXT, RESET_SWIPE, VOTE_CAT_IMAGE, SET_VOTE_STATUS } from './types';
 
 // Set initial stacks
@@ -36,10 +36,9 @@ export const resetSwipe = () => ({
 
 // Vote action (like or dislike)
 export const voteCatImage = (catId: string, voteType: 1 | -1) => async (dispatch: any) => {
-    dispatch(setLoading(true)); // Set loading before the API call
+    dispatch(setLoading(true));
 
     try {
-        // Call the API service to send the vote
         const voteResponse = await voteCatImageService(catId, voteType);
 
         // Dispatch success action
@@ -59,7 +58,7 @@ export const voteCatImage = (catId: string, voteType: 1 | -1) => async (dispatch
 
         console.error('Error voting for cat image:', error);
     } finally {
-        dispatch(setLoading(false)); // Set loading to false after the API call is finished
+        dispatch(setLoading(false));
     }
 };
 

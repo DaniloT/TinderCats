@@ -20,7 +20,7 @@ const ToggleSwitch = () => {
 
     const translateX = animatedValue.interpolate({
         inputRange: [0, 1],
-        outputRange: [5, 49], // Adjusted to ensure proper centering
+        outputRange: [5, 49],
     });
 
     return (

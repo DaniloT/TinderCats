@@ -39,22 +39,18 @@ const HomeScreen = () => {
         const isRight = direction === 'right';
         const currentCatId = activeStack === 'A' ? stackA[currentIndex]?.id : stackB[currentIndex]?.id;
 
-        // Reset swipe text before updating
         dispatch(setSwipeText(''));
         swipeOpacity.setValue(0);
 
-        // Vote after button press
         dispatch(voteCatImage(currentCatId, isRight ? 1 : -1));
 
-        // Set Swipe Text after a short delay to prevent overlap
         setTimeout(() => {
             dispatch(setSwipeText(isRight ? 'LIKE' : 'NOPE'));
             swipeOpacity.setValue(1);
-        }, 50); // Short delay before showing swipeText
+        }, 50);
 
-        // Trigger the same animation as a swipe
         Animated.timing(swipeAnimation, {
-            toValue: { x: isRight ? 500 : -500, y: 0 }, // ✅ Match swipe behavior
+            toValue: { x: isRight ? 500 : -500, y: 0 },
             duration: 300,
             useNativeDriver: true,
         }).start(() => handleSwipeComplete());
@@ -63,9 +59,8 @@ const HomeScreen = () => {
     const handleSwipeComplete = () => {
         dispatch(resetSwipe());
 
-        // Reset swipeText and opacity immediately after the swipe
-        dispatch(setSwipeText(''));  // Clear swipeText immediately
-        swipeOpacity.setValue(0);    // Reset swipeOpacity
+        dispatch(setSwipeText(''));
+        swipeOpacity.setValue(0);
 
         if (currentIndex < 9) {
             dispatch(nextImage());
@@ -107,7 +102,6 @@ const HomeScreen = () => {
             const { translationX } = event.nativeEvent;
             const swipeThreshold = 120;
 
-            // Check swipe direction and trigger the text box only once
             if (translationX > swipeThreshold) {
                 dispatch(setSwipeText('LIKE'));
                 Animated.timing(swipeOpacity, { toValue: 1, duration: 300, useNativeDriver: true }).start();
@@ -166,7 +160,6 @@ const HomeScreen = () => {
                                     style={styles.catImage}
                                 />
 
-                                {/* Info Box */}
                                 <View style={styles.infoBox}>
                                     <View style={styles.textContainer}>
                                         <Text style={styles.catName}>
@@ -180,10 +173,8 @@ const HomeScreen = () => {
                                                 : stackB[currentIndex]?.breeds?.[0]?.origin || 'Unknown'}
                                         </Text>
                                     </View>
-                                    <Text style={styles.catAge}>3</Text>
                                 </View>
 
-                                {/* Swipe Indicators */}
                                 {swipeText !== '' && (
                                     <Animated.View
                                         style={[

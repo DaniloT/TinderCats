@@ -1,13 +1,13 @@
 import { SET_STACKS, NEXT_IMAGE, SWAP_STACKS, SET_LOADING, SET_SWIPE_TEXT, RESET_SWIPE, VOTE_CAT_IMAGE, SET_VOTE_STATUS } from '../actions/types';
 
 const initialState = {
-    stackA: [], // Array of objects with image URL and breed information
+    stackA: [],
     stackB: [],
-    activeStack: 'A', // Current active stack ('A' or 'B')
-    currentIndex: 0, // Index of the current image in the active stack
-    loading: false, // Loading state
-    swipeText: '', // The current swipe text (LIKE/NOPE)
-    voteStatus: '', // Vote status (success or failed)
+    activeStack: 'A',
+    currentIndex: 0,
+    loading: false,
+    swipeText: '',
+    voteStatus: '',
 };
 
 const catReducer = (state = initialState, action: any) => {
@@ -15,55 +15,54 @@ const catReducer = (state = initialState, action: any) => {
         case SET_STACKS:
             return {
                 ...state,
-                stackA: action.payload.stackA, // Updated stack A with image and breed data
-                stackB: action.payload.stackB, // Updated stack B with image and breed data
+                stackA: action.payload.stackA,
+                stackB: action.payload.stackB,
                 loading: false,
             };
 
         case NEXT_IMAGE:
             return {
                 ...state,
-                currentIndex: state.currentIndex + 1, // Move to the next image in the active stack
+                currentIndex: state.currentIndex + 1,
             };
 
         case SWAP_STACKS:
             return {
                 ...state,
-                activeStack: state.activeStack === 'A' ? 'B' : 'A', // Switch between stack A and B
-                stackA: state.activeStack === 'A' ? [] : state.stackA, // Empty stack A if it's not active
-                stackB: state.activeStack === 'B' ? [] : state.stackB, // Empty stack B if it's not active
-                currentIndex: 0, // Reset the index when swapping stacks
+                activeStack: state.activeStack === 'A' ? 'B' : 'A',
+                stackA: state.activeStack === 'A' ? [] : state.stackA,
+                stackB: state.activeStack === 'B' ? [] : state.stackB,
+                currentIndex: 0,
             };
 
         case SET_LOADING:
             return {
                 ...state,
-                loading: action.payload, // Set loading state
+                loading: action.payload,
             };
 
         case SET_SWIPE_TEXT:
             return {
                 ...state,
-                swipeText: action.payload, // Set the swipe text (LIKE/NOPE)
+                swipeText: action.payload,
             };
 
         case RESET_SWIPE:
             return {
                 ...state,
-                swipeText: '', // Reset swipe text
+                swipeText: '',
             };
 
         case VOTE_CAT_IMAGE:
-            // You can store voting data for each image (for example: success or failure status)
             return {
                 ...state,
-                voteStatus: action.payload.voteStatus, // Update the vote status (success or failed)
+                voteStatus: action.payload.voteStatus,
             };
 
         case SET_VOTE_STATUS:
             return {
                 ...state,
-                voteStatus: action.payload, // Set the vote status (for showing a success/failure message)
+                voteStatus: action.payload,
             };
 
         default:

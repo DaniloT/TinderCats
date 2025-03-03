@@ -1,19 +1,13 @@
-// types.ts
-
-// Action Types for the Cat actions
 export const SET_STACKS = 'SET_STACKS';
 export const NEXT_IMAGE = 'NEXT_IMAGE';
 export const SWAP_STACKS = 'SWAP_STACKS';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_SWIPE_TEXT = 'SET_SWIPE_TEXT';
 export const RESET_SWIPE = 'RESET_SWIPE';
-
-// New action types related to voting
 export const VOTE_CAT_IMAGE = 'VOTE_CAT_IMAGE';
 export const SET_VOTE_STATUS = 'SET_VOTE_STATUS';
 
 
-// Define interfaces for the payloads
 export interface SetStacksAction {
     type: typeof SET_STACKS;
     payload: {
@@ -55,10 +49,9 @@ export interface VoteCatImageAction {
 
 export interface SetVoteStatusAction {
     type: typeof SET_VOTE_STATUS;
-    payload: string; // 'success' or 'failed'
+    payload: string;
 }
 
-// Action type union
 export type CatActionTypes =
     | SetStacksAction
     | NextImageAction

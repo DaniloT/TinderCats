@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native';
+import {COLORS} from '../../constants/colors';
 
 const ToggleSwitchStyles = StyleSheet.create({
     toggleContainer: {
         position: 'absolute',
-        top: 30, // Moved higher for better spacing
+        top: 30,
         alignSelf: 'center',
     },
     toggleButton: {
-        width: 100, // Slightly reduced width
-        height: 36, // Reduced height for a closer match
+        width: 100,
+        height: 36,
         backgroundColor: '#F5F5F5',
-        borderRadius: 18, // Adjusted to match new height
+        borderRadius: 18,
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 5,
@@ -19,15 +20,15 @@ const ToggleSwitchStyles = StyleSheet.create({
     },
     slider: {
         position: 'absolute',
-        width: 46, // Adjusted width for balance
-        height: 32, // Reduced height to match new button size
+        width: 46,
+        height: 32,
         backgroundColor: 'white',
-        borderRadius: 16, // Adjusted for a balanced appearance
-        shadowColor: '#00000030',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
-        elevation: 3,
+        borderRadius: 16,
+        shadowColor: COLORS.grayText,
+        shadowOffset: { width: 0, height: 10 },
+        shadowOpacity: 0.3,
+        shadowRadius: 16,
+        elevation: 16,
     },
     iconWrapper: {
         flex: 1,
