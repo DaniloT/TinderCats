@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
+import catReducer from './reducers/catReducer';
 
 const store = configureStore({
     reducer: {
-        // TODO: Add reducer
+        cat: catReducer,
     },
 });
 
